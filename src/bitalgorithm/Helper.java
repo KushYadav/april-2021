@@ -8,7 +8,9 @@ public class Helper {
 
 		System.out.println(a);
 		System.out.println(Integer.toBinaryString(a));
-		System.out.println(Integer.toBinaryString(a-1));
+		System.out.println(Integer.toBinaryString(a - 1));
+		System.out.println(Integer.toBinaryString(0xAAAAAAAA));
+		System.out.println(Integer.toBinaryString(0x55555555));
 
 	}
 
