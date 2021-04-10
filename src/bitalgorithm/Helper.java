@@ -6,10 +6,6 @@ public class Helper {
 
 		int a = 4;
 		
-		System.err.println(Integer.toBinaryString(a));
-		System.err.println(Integer.toBinaryString(a-1));
-		
-		
 	}
 
 }
