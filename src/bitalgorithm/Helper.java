@@ -4,8 +4,11 @@ public class Helper {
 
 	public static void main(String[] args) {
 
-		System.out.println(Integer.toBinaryString(30<<20));
-		
+		int a = 5 << 2;
+
+		System.out.println(a);
+		System.out.println(Integer.toBinaryString(a));
+
 	}
 
 }
