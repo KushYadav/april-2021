@@ -2,7 +2,7 @@ package bitalgorithm;
 
 import java.util.Scanner;
 
-public class NextLargestWithSameSetBits {
+public class ClosestLargerWithSameSetBits {
 
 	public static void main(String[] args) {
 
@@ -32,6 +32,7 @@ public class NextLargestWithSameSetBits {
 			n |= (1 << p);
 			n &= ~((1 << p) - 1);
 			n |= (1 << (c1 - 1)) - 1;
+
 			System.out.println(n);
 		}
 	}
