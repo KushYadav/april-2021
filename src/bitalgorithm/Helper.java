@@ -6,13 +6,10 @@ public class Helper {
 
 		int a = 4;
 		
-		System.out.println(Integer.MAX_VALUE);
-		System.out.println(Integer.MIN_VALUE);
-		System.out.println(Integer.toBinaryString(Integer.MAX_VALUE));
-		System.out.println(Integer.toBinaryString(Integer.MAX_VALUE));
-		System.out.println(Integer.toBinaryString((int)(Integer.MIN_VALUE+Integer.MIN_VALUE)));
-		System.out.println(Integer.toBinaryString(-2));
 		System.out.println(String.format("%32s", Integer.toBinaryString(10)).replace(' ', '0'));
+		System.out.println(String.format("%32s", Integer.toBinaryString(9)).replace(' ', '0'));
+		System.out.println(String.format("%32s", Integer.toBinaryString(10&9)).replace(' ', '0'));
+		System.out.println(String.format("%32s", Integer.toBinaryString(12345)).replace(' ', '0'));
 
 	}
 	
