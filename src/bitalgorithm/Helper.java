@@ -12,6 +12,9 @@ public class Helper {
 		System.out.println(Integer.toBinaryString(Integer.MAX_VALUE));
 		System.out.println(Integer.toBinaryString((int)(Integer.MIN_VALUE+Integer.MIN_VALUE)));
 		System.out.println(Integer.toBinaryString(-2));
+		System.out.println(String.format("%32s", Integer.toBinaryString(10)).replace(' ', '0'));
+
 	}
+	
 
 }
