@@ -30,6 +30,7 @@ public class ClientLL {
 		cll.display();
 		cll.fold();
 		cll.display();
+		cll.KthFromLast(4);
 
 	}
 }

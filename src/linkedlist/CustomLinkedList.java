@@ -235,4 +235,20 @@ public class CustomLinkedList {
 		hm.node = head;
 		fold(head, hm, 0);
 	}
+
+	// Kth Element from last
+
+	private int KthFromLast(Node node, int cidx, int lidx) {
+		if (node == null) {
+			return Integer.MIN_VALUE;
+		}
+		if (cidx == size - lidx) {
+			return node.data;
+		}
+		return KthFromLast(node.next, cidx + 1, lidx);
+	}
+
+	public void KthFromLast(int idx) {
+		System.out.println(KthFromLast(head, 0, idx));
+	}
 }
