@@ -1,7 +1,5 @@
 package linkedlist;
 
-import java.util.LinkedList;
-
 public class ClientLL {
 
 	public static void main(String[] args) {
@@ -16,13 +14,16 @@ public class ClientLL {
 		cll.display();
 		cll.displayR();
 
-		System.out.println(cll.remove(3));
-		System.out.println(cll.remove(2));
-		System.out.println(cll.remove(1));
-		System.out.println(cll.remove(1));
-		System.out.println(cll.remove(0));
+//		System.out.println(cll.remove(3));
+//		System.out.println(cll.remove(2));
+//		System.out.println(cll.remove(1));
+//		System.out.println(cll.remove(1));
+//		System.out.println(cll.remove(0));
 
-		LinkedList<String> ll = new LinkedList<String>();
+		cll.reverseDataI();
+		cll.display();
+		cll.reverseDataR();
+		cll.display();
 
 	}
 }

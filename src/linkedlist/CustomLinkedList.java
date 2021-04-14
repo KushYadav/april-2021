@@ -11,6 +11,8 @@ public class CustomLinkedList {
 	private Node tail;
 	private int size;
 
+	// Basic Functions
+
 	public int size() {
 		return size;
 	}
@@ -129,11 +131,46 @@ public class CustomLinkedList {
 		}
 		System.out.print(node.data + " ");
 		displayR(node.next);
-
 	}
 
 	public void displayR() {
 		displayR(head);
 	}
 
+	// Reverse Data Iterative
+
+	public void reverseDataI() {
+		Node trav = head;
+		for (int i = 0; i < size / 2; i++) {
+			int temp = getNode(size - i - 1).data;
+			getNode(size - i - 1).data = trav.data;
+			trav.data = temp;
+			trav = trav.next;
+		}
+	}
+
+	// Reverse Data Recursive
+
+	private class ReverseDataHM {
+		Node node;
+	}
+
+	private void reverseDataR(Node node, ReverseDataHM hm, int idx) {
+		if (node == null) {
+			return;
+		}
+		reverseDataR(node.next, hm, idx + 1);
+		if (idx > size / 2) {
+			int temp = hm.node.data;
+			hm.node.data = node.data;
+			node.data = temp;
+			hm.node = hm.node.next;
+		}
+	}
+
+	public void reverseDataR() {
+		ReverseDataHM hm = new ReverseDataHM();
+		hm.node = head;
+		reverseDataR(head, hm, 0);
+	}
 }
