@@ -173,4 +173,39 @@ public class CustomLinkedList {
 		hm.node = head;
 		reverseDataR(head, hm, 0);
 	}
+
+	// Reverse Pointer Iterative
+
+	public void reversePointerI() {
+		Node curr = head;
+		Node next = head.next;
+		while (next != null) {
+			Node nextToNext = next.next;
+			next.next = curr;
+			curr = next;
+			next = nextToNext;
+		}
+		Node temp = head;
+		head = tail;
+		tail = temp;
+		tail.next = null;
+	}
+
+	// Reverse Pointer Recursive
+
+	private void reversePointerR(Node node) {
+		if (node.next == null) {
+			return;
+		}
+		reversePointerR(node.next);
+		node.next.next = node;
+	}
+
+	public void reversePointerR() {
+		reversePointerR(head);
+		Node temp = head;
+		head = tail;
+		tail = temp;
+		tail.next = null;
+	}
 }

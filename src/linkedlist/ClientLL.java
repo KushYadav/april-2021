@@ -24,6 +24,10 @@ public class ClientLL {
 		cll.display();
 		cll.reverseDataR();
 		cll.display();
+		cll.reversePointerI();
+		cll.display();
+		cll.reversePointerR();
+		cll.display();
 
 	}
 }
