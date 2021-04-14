@@ -208,4 +208,31 @@ public class CustomLinkedList {
 		tail = temp;
 		tail.next = null;
 	}
+
+	// Fold
+
+	private class FoldHM {
+		Node node;
+	}
+
+	private void fold(Node node, FoldHM hm, int idx) {
+		if (node == null) {
+			return;
+		}
+		fold(node.next, hm, idx + 1);
+		if (idx > size / 2) {
+			node.next = hm.node.next;
+			hm.node.next = node;
+			hm.node = hm.node.next.next;
+		} else if (idx == size / 2) {
+			tail = node;
+			tail.next = null;
+		}
+	}
+
+	public void fold() {
+		FoldHM hm = new FoldHM();
+		hm.node = head;
+		fold(head, hm, 0);
+	}
 }

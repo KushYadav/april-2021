@@ -28,6 +28,8 @@ public class ClientLL {
 		cll.display();
 		cll.reversePointerR();
 		cll.display();
+		cll.fold();
+		cll.display();
 
 	}
 }
