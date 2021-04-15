@@ -251,4 +251,29 @@ public class CustomLinkedList {
 	public void KthFromLast(int idx) {
 		System.out.println(KthFromLast(head, 0, idx));
 	}
+
+	// Pallindrome
+
+	private class PallindromeHM {
+		Node node;
+	}
+
+	private boolean isPallindrome(Node node, PallindromeHM hm) {
+		if (node == null) {
+			return true;
+		}
+		boolean b = isPallindrome(node.next, hm);
+		if (node.data != hm.node.data) {
+			return false;
+		}
+		hm.node = hm.node.next;
+		return b;
+
+	}
+
+	public boolean isPallindrome() {
+		PallindromeHM hm = new PallindromeHM();
+		hm.node = head;
+		return isPallindrome(head, hm);
+	}
 }

@@ -31,6 +31,7 @@ public class ClientLL {
 		cll.fold();
 		cll.display();
 		cll.KthFromLast(4);
+		System.out.println(cll.isPallindrome());
 
 	}
 }
