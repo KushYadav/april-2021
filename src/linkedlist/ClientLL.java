@@ -12,7 +12,7 @@ public class ClientLL {
 		cll.add(2, 50);
 
 		cll.display();
-		cll.displayR();
+//		cll.displayR();
 
 //		System.out.println(cll.remove(3));
 //		System.out.println(cll.remove(2));
@@ -20,18 +20,21 @@ public class ClientLL {
 //		System.out.println(cll.remove(1));
 //		System.out.println(cll.remove(0));
 
-		cll.reverseDataI();
+//		cll.reverseDataI();
+//		cll.display();
+//		cll.reverseDataR();
+//		cll.display();
+//		cll.reversePointerI();
+//		cll.display();
+//		cll.reversePointerR();
+//		cll.display();
+		
+//		cll.fold();
+//		cll.display();
+//		cll.KthFromLast(4);
+//		System.out.println(cll.isPallindrome());
+		cll = cll.mergeSort();
 		cll.display();
-		cll.reverseDataR();
-		cll.display();
-		cll.reversePointerI();
-		cll.display();
-		cll.reversePointerR();
-		cll.display();
-		cll.fold();
-		cll.display();
-		cll.KthFromLast(4);
-		System.out.println(cll.isPallindrome());
 
 	}
 }

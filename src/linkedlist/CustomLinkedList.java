@@ -276,4 +276,64 @@ public class CustomLinkedList {
 		hm.node = head;
 		return isPallindrome(head, hm);
 	}
+
+	// Merge Sort
+
+	public CustomLinkedList mergeSort() {
+		if (head == tail) {
+			return this;
+		}
+		Node midNode = this.getMidNode();
+		Node hl = this.head;
+		Node hr = midNode.next;
+		Node tl = midNode;
+		Node tr = this.tail;
+		tl.next = null;
+		CustomLinkedList l = new CustomLinkedList();
+		l.head = hl;
+		l.tail = tl;
+		CustomLinkedList r = new CustomLinkedList();
+		r.head = hr;
+		r.tail = tr;
+
+		l = l.mergeSort();
+		r = r.mergeSort();
+		return mergeTwoSortedLL(l, r);
+	}
+
+	private Node getMidNode() {
+		Node slower = head;
+		Node faster = head;
+		while (faster.next != null && faster.next.next != null) {
+			slower = slower.next;
+			faster = faster.next.next;
+		}
+		return slower;
+	}
+
+	private CustomLinkedList mergeTwoSortedLL(CustomLinkedList a, CustomLinkedList b) {
+		CustomLinkedList merged = new CustomLinkedList();
+		Node ha = a.head;
+		Node hb = b.head;
+
+		while (ha != null && hb != null) {
+			if (ha.data < hb.data) {
+				merged.addLast(ha.data);
+				ha = ha.next;
+			} else {
+				merged.addLast(hb.data);
+				hb = hb.next;
+			}
+		}
+
+		while (ha != null) {
+			merged.addLast(ha.data);
+			ha = ha.next;
+		}
+		while (hb != null) {
+			merged.addLast(hb.data);
+			hb = hb.next;
+		}
+		return merged;
+	}
 }
