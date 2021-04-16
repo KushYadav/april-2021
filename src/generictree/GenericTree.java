@@ -1,6 +1,7 @@
 package generictree;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class GenericTree {
@@ -56,4 +57,54 @@ public class GenericTree {
 		display(root);
 	}
 
+	// Supportive Functions
+
+	private int sizeR(Node node) {
+		int cs = 0;
+		for (Node child : node.children) {
+			cs += sizeR(child);
+		}
+		return cs + 1;
+	}
+
+	public int sizeR() {
+		return sizeR(root);
+	}
+
+	private int maxR(Node node) {
+		int max = Integer.MIN_VALUE;
+		for (Node child : node.children) {
+			max = Math.max(maxR(child), max);
+		}
+		return Math.max(max, node.data);
+	}
+
+	public int maxR() {
+		return maxR(root);
+	}
+
+	private int height(Node node) {
+		int height = -1;
+		for (Node child : node.children) {
+			height = Math.max(height, height(child));
+		}
+		return height + 1;
+	}
+
+	public int height() {
+		return height(root);
+	}
+
+	private boolean find(Node node, int data) {
+		boolean found = false;
+		for (Node child : node.children) {
+			found |= find(child, data);
+		}
+		return found | (node.data == data);
+
+	}
+
+	public boolean find(int data) {
+		return find(root, data);
+	}
 }

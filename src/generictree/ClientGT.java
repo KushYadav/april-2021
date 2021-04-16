@@ -8,5 +8,11 @@ public class ClientGT {
 
 		GenericTree gt = new GenericTree();
 		gt.display();
+		System.out.println(gt.size());
+		System.out.println(gt.sizeR());
+		System.out.println(gt.maxR());
+		System.out.println(gt.height());
+		System.out.println(gt.find(90));
+		System.out.println(gt.find(900));
 	}
 }
