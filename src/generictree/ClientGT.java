@@ -16,6 +16,8 @@ public class ClientGT {
 		System.out.println(gt.find(900));
 //		gt.mirror();
 //		gt.display();
-		gt.printAtDepth(2);
+//		gt.printAtDepth(2);
+		gt.linearize();
+		gt.display();
 	}
 }

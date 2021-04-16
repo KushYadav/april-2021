@@ -106,6 +106,8 @@ public class GenericTree {
 	public boolean find(int data) {
 		return find(root, data);
 	}
+	
+	// Mirror
 
 	private void mirror(Node node) {
 		for (Node child : node.children) {
@@ -117,6 +119,8 @@ public class GenericTree {
 	public void mirror() {
 		mirror(root);
 	}
+	
+	// Print At Depth
 
 	private void printAtDepth(Node node, int currDepth, int depth) {
 		if (currDepth == depth) {
@@ -133,4 +137,25 @@ public class GenericTree {
 		printAtDepth(root, 0, depth);
 	}
 
+	// Linearize
+	
+	private void linearize(Node node) {
+		for (Node child : node.children) {
+			linearize(child);
+		}
+
+		while (node.children.size() > 1) {
+			Node ln = node.children.get(node.children.size() - 1);
+			Node sln = node.children.get(node.children.size() - 2);
+			while (sln.children.size() > 0) {
+				sln = sln.children.get(0);
+			}
+			sln.children.add(ln);
+			node.children.remove(node.children.get(node.children.size() - 1));
+		}
+	}
+
+	public void linearize() {
+		linearize(root);
+	}
 }
