@@ -101,10 +101,24 @@ public class GenericTree {
 			found |= find(child, data);
 		}
 		return found | (node.data == data);
-
 	}
 
 	public boolean find(int data) {
 		return find(root, data);
 	}
+	
+
+	private void mirror(Node node) {
+		for (Node child : node.children) {
+			mirror(child);
+		}
+		Collections.reverse(node.children);	
+	}
+
+	public void mirror() {
+		mirror(root);
+	}
+	
+	
+
 }
