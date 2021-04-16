@@ -14,7 +14,8 @@ public class ClientGT {
 		System.out.println(gt.height());
 		System.out.println(gt.find(90));
 		System.out.println(gt.find(900));
-		gt.mirror();
-		gt.display();
+//		gt.mirror();
+//		gt.display();
+		gt.printAtDepth(2);
 	}
 }

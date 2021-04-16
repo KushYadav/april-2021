@@ -106,19 +106,31 @@ public class GenericTree {
 	public boolean find(int data) {
 		return find(root, data);
 	}
-	
 
 	private void mirror(Node node) {
 		for (Node child : node.children) {
 			mirror(child);
 		}
-		Collections.reverse(node.children);	
+		Collections.reverse(node.children);
 	}
 
 	public void mirror() {
 		mirror(root);
 	}
-	
-	
+
+	private void printAtDepth(Node node, int currDepth, int depth) {
+		if (currDepth == depth) {
+			System.out.print(node.data + " ");
+		}
+
+		for (Node child : node.children) {
+			printAtDepth(child, currDepth + 1, depth);
+		}
+
+	}
+
+	public void printAtDepth(int depth) {
+		printAtDepth(root, 0, depth);
+	}
 
 }
