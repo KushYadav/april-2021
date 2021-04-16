@@ -158,7 +158,7 @@ public class GenericTree {
 	public void linearize() {
 		linearize(root);
 	}
-	
+
 	// Flatten
 
 	private void flatten(Node node) {
@@ -177,5 +177,35 @@ public class GenericTree {
 
 	public void flatten() {
 		flatten(root);
+	}
+
+	// Pre-Order
+
+	private void preOrder(Node node) {
+		System.out.print(node.data + " ");
+		for (Node child : node.children) {
+			preOrder(child);
+		}
+	}
+
+	public void preOrder() {
+		System.out.print("Pre-Order: ");
+		preOrder(root);
+		System.out.println();
+	}
+
+// Post-Order
+
+	private void postOrder(Node node) {
+		for (Node child : node.children) {
+			postOrder(child);
+		}
+		System.out.print(node.data + " ");
+	}
+
+	public void postOrder() {
+		System.out.print("Post-Order: ");
+		postOrder(root);
+		System.out.println();
 	}
 }

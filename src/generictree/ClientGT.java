@@ -18,8 +18,10 @@ public class ClientGT {
 //		gt.display();
 //		gt.printAtDepth(2);
 //		gt.linearize();
-		gt.flatten();
-		gt.display();
+//		gt.flatten();
+//		gt.display();
+		gt.preOrder();
+		gt.postOrder();
 		
 	}
 }
