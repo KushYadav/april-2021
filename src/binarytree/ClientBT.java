@@ -15,6 +15,9 @@ public class ClientBT {
 		System.out.println(bt.find(88));
 		System.out.println(bt.max());
 		System.out.println(bt.height());
+		bt.preOrder();
+		bt.inOrder();
+		bt.postOrder();
 
 	}
 

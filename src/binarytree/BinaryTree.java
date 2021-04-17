@@ -37,7 +37,7 @@ public class BinaryTree {
 		}
 		return child;
 	}
-	
+
 	// Basic Functions
 
 	private void display(Node node) {
@@ -105,6 +105,50 @@ public class BinaryTree {
 
 	public int height() {
 		return height(root);
+	}
+
+	// Pre-Order, In-Order, Post-Order
+
+	private void preOrder(Node node) {
+		if (node == null) {
+			return;
+		}
+		System.out.print(node.data + " ");
+		preOrder(node.left);
+		preOrder(node.right);
+	}
+
+	public void preOrder() {
+		preOrder(root);
+		System.out.println();
+	}
+
+	private void inOrder(Node node) {
+		if (node == null) {
+			return;
+		}
+		inOrder(node.left);
+		System.out.print(node.data + " ");
+		inOrder(node.right);
+	}
+
+	public void inOrder() {
+		inOrder(root);
+		System.out.println();
+	}
+
+	private void postOrder(Node node) {
+		if (node == null) {
+			return;
+		}
+		postOrder(node.left);
+		postOrder(node.right);
+		System.out.print(node.data + " ");
+	}
+
+	public void postOrder() {
+		postOrder(root);
+		System.out.println();
 	}
 
 }
