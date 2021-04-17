@@ -1,7 +1,7 @@
 package binarytree;
 
+import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class BinaryTree {
 
@@ -148,6 +148,24 @@ public class BinaryTree {
 
 	public void postOrder() {
 		postOrder(root);
+		System.out.println();
+	}
+
+	// Level Order
+
+	public void levelOrder() {
+		LinkedList<Node> queue = new LinkedList<Node>();
+		queue.addLast(root);
+		while (!queue.isEmpty()) {
+			Node removed = queue.removeFirst();
+			System.out.print(removed.data + " ");
+			if (removed.left != null) {
+				queue.addLast(removed.left);
+			}
+			if (removed.right != null) {
+				queue.addLast(removed.right);
+			}
+		}
 		System.out.println();
 	}
 

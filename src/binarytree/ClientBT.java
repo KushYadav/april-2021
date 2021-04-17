@@ -18,6 +18,7 @@ public class ClientBT {
 		bt.preOrder();
 		bt.inOrder();
 		bt.postOrder();
+		bt.levelOrder();
 
 	}
 
