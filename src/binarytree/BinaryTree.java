@@ -261,11 +261,11 @@ public class BinaryTree {
 
 	// Build tree from Pre-Order and In-Order
 
-	int[] pre = new int[] { 25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 };
-	int[] in = new int[] { 4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90 };
-	int[] post = new int[] { 4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25 };
+	private int[] pre = new int[] { 25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 };
+	private int[] in = new int[] { 4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90 };
+	private int[] post = new int[] { 4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25 };
 
-	public Node buildTree(int[] pre, int lp, int hp, int[] in, int li, int hi) {
+	private Node buildTreePreIn(int[] pre, int lp, int hp, int[] in, int li, int hi) {
 		if (li > hi) {
 			return null;
 		}
@@ -276,14 +276,40 @@ public class BinaryTree {
 			idx++;
 		int diff = idx - li;
 
-		node.left = buildTree(pre, lp + 1, lp + diff, in, li, idx - 1);
-		node.right = buildTree(pre, lp + diff + 1, hp, in, idx + 1, hi);
+		node.left = buildTreePreIn(pre, lp + 1, lp + diff, in, li, idx - 1);
+		node.right = buildTreePreIn(pre, lp + diff + 1, hp, in, idx + 1, hi);
 		return node;
 	}
 
-	public void buildTree() {
+	public void buildTreePreIn() {
 		Node node = new Node();
-		node = buildTree(pre, 0, pre.length - 1, in, 0, in.length - 1);
+		node = buildTreePreIn(pre, 0, pre.length - 1, in, 0, in.length - 1);
+		display(node);
+
+	}
+
+	// Build tree from Post-Order and In-Order
+
+	private Node buildTreePostIn(int[] in, int li, int hi, int[] post, int lp, int hp) {
+		if (li > hi) {
+			return null;
+		}
+		Node node = new Node();
+		node.data = post[hp];
+		int idx = li;
+		while (in[idx] != post[hp]) {
+			idx++;
+		}
+		int diff = idx - li;
+		node.left = buildTreePostIn(in, li, idx - 1, post, lp, hp - diff - 1);
+		node.right = buildTreePostIn(in, idx + 1, hi, post, hp - diff, hp - 1);
+		return node;
+	}
+
+	public void buildTreePostIn() {
+		Node node = new Node();
+		node = buildTreePostIn(in, 0, in.length - 1, post, 0, post.length - 1);
 		display(node);
 	}
+
 }

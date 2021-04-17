@@ -7,7 +7,7 @@ public class ClientBT {
 	public static void main(String[] args) {
 
 		BinaryTree bt = new BinaryTree();
-		bt.display();
+//		bt.display();
 //		System.out.println(bt.isEmpty());
 //		System.out.println(bt.size());
 //		System.out.println(bt.sizeR());
@@ -24,6 +24,7 @@ public class ClientBT {
 //		System.out.println(bt.isBalanced());
 //		bt.removeLeaf();
 //		bt.display();
-		bt.buildTree();
+		bt.buildTreePreIn();
+		bt.buildTreePostIn();
 	}
 }
