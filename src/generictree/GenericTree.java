@@ -225,4 +225,32 @@ public class GenericTree {
 	public void removeLeaf() {
 		removeLeaf(root);
 	}
+
+	// Predecessor & Successor
+
+	private Node pred;
+	private Node succ;
+	private int state;
+
+	private void predSucc(Node node, int data) {
+		if (state == 0) {
+			if (node.data == data) {
+				state = 1;
+			} else {
+				pred = node;
+			}
+		} else if (state == 1) {
+			state = 2;
+			succ = node;
+		}
+		for (Node child : node.children) {
+			predSucc(child, data);
+		}
+	}
+
+	public void predSucc(int data) {
+		predSucc(root, data);
+		System.out.println(pred.data);
+		System.out.println(succ.data);
+	}
 }

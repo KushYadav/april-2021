@@ -8,21 +8,22 @@ public class ClientGT {
 
 		GenericTree gt = new GenericTree();
 		gt.display();
-		System.out.println(gt.size());
-		System.out.println(gt.sizeR());
-		System.out.println(gt.maxR());
-		System.out.println(gt.height());
-		System.out.println(gt.find(90));
-		System.out.println(gt.find(900));
+//		System.out.println(gt.size());
+//		System.out.println(gt.sizeR());
+//		System.out.println(gt.maxR());
+//		System.out.println(gt.height());
+//		System.out.println(gt.find(90));
+//		System.out.println(gt.find(900));
 //		gt.mirror();
 //		gt.display();
 //		gt.printAtDepth(2);
 //		gt.linearize();
 //		gt.flatten();
 //		gt.display();
-		gt.preOrder();
-		gt.postOrder();
-		gt.removeLeaf();
-		gt.display();
+//		gt.preOrder();
+//		gt.postOrder();
+//		gt.removeLeaf();
+//		gt.display();
+		gt.predSucc(80);
 	}
 }
