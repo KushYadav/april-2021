@@ -21,8 +21,9 @@ public class ClientBT {
 //		bt.levelOrder();
 //		bt.levelOrderLW();
 //		System.out.println(bt.diameter());
-		System.out.println(bt.isBalanced());
-
+//		System.out.println(bt.isBalanced());
+//		bt.removeLeaf();
+//		bt.display();
+		bt.buildTree();
 	}
-
 }

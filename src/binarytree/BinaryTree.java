@@ -238,4 +238,52 @@ public class BinaryTree {
 	public boolean isBalanced() {
 		return isBalanced(root).isBalanced;
 	}
+
+	// Remove Leaf
+
+	private void removeLeaf(Node node) {
+		if (node == null) {
+			return;
+		}
+		if (node.left != null && node.left.left == null && node.left.right == null) {
+			node.left = null;
+		}
+		if (node.right != null && node.right.left == null && node.right.right == null) {
+			node.right = null;
+		}
+		removeLeaf(node.left);
+		removeLeaf(node.right);
+	}
+
+	public void removeLeaf() {
+		removeLeaf(root);
+	}
+
+	// Build tree from Pre-Order and In-Order
+
+	int[] pre = new int[] { 25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 };
+	int[] in = new int[] { 4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90 };
+	int[] post = new int[] { 4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25 };
+
+	public Node buildTree(int[] pre, int lp, int hp, int[] in, int li, int hi) {
+		if (li > hi) {
+			return null;
+		}
+		Node node = new Node();
+		node.data = pre[lp];
+		int idx = li;
+		while (in[idx] != pre[lp])
+			idx++;
+		int diff = idx - li;
+
+		node.left = buildTree(pre, lp + 1, lp + diff, in, li, idx - 1);
+		node.right = buildTree(pre, lp + diff + 1, hp, in, idx + 1, hi);
+		return node;
+	}
+
+	public void buildTree() {
+		Node node = new Node();
+		node = buildTree(pre, 0, pre.length - 1, in, 0, in.length - 1);
+		display(node);
+	}
 }
