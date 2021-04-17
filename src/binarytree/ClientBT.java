@@ -20,7 +20,8 @@ public class ClientBT {
 //		bt.postOrder();
 //		bt.levelOrder();
 //		bt.levelOrderLW();
-		System.out.println(bt.diameter());
+//		System.out.println(bt.diameter());
+		System.out.println(bt.isBalanced());
 
 	}
 

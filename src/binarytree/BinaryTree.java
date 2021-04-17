@@ -215,4 +215,27 @@ public class BinaryTree {
 	public int diameter() {
 		return diameter(root)[1];
 	}
+
+	// Is balanced
+
+	private class IsBalancedHM {
+		boolean isBalanced = true;
+		int height = -1;
+	}
+
+	private IsBalancedHM isBalanced(Node node) {
+		if (node == null) {
+			return new IsBalancedHM();
+		}
+		IsBalancedHM sb = new IsBalancedHM();
+		IsBalancedHM l = isBalanced(node.left);
+		IsBalancedHM r = isBalanced(node.right);
+		sb.height = Math.max(l.height, r.height) + 1;
+		sb.isBalanced = l.isBalanced & r.isBalanced & (Math.abs(l.height - r.height) <= 1);
+		return sb;
+	}
+
+	public boolean isBalanced() {
+		return isBalanced(root).isBalanced;
+	}
 }
