@@ -169,4 +169,26 @@ public class BinaryTree {
 		System.out.println();
 	}
 
+	// Level Order LW
+
+	public void levelOrderLW() {
+		LinkedList<Node> queue1 = new LinkedList<Node>();
+		LinkedList<Node> queue2 = new LinkedList<Node>();
+		queue1.addLast(root);
+		while (!queue1.isEmpty()) {
+			Node removed = queue1.removeFirst();
+			System.out.print(removed.data + " ");
+			if (removed.left != null) {
+				queue2.addLast(removed.left);
+			}
+			if (removed.right != null) {
+				queue2.addLast(removed.right);
+			}
+			if (queue1.isEmpty()) {
+				queue1 = queue2;
+				queue2 = new LinkedList<Node>();
+				System.out.println();
+			}
+		}
+	}
 }

@@ -19,6 +19,7 @@ public class ClientBT {
 		bt.inOrder();
 		bt.postOrder();
 		bt.levelOrder();
+		bt.levelOrderLW();
 
 	}
 
