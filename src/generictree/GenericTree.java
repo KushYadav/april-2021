@@ -253,4 +253,28 @@ public class GenericTree {
 		System.out.println(pred.data);
 		System.out.println(succ.data);
 	}
+
+	// Just Larger
+
+	private Node justLarger;
+
+	private void justLarger(Node node, int data) {
+		if (node.data > data) {
+			
+			if (justLarger == null) {
+				justLarger = node;
+			} else if (node.data < justLarger.data) {
+				justLarger = node;
+			}
+		}
+		for (Node child : node.children) {
+			justLarger(child, data);
+		}
+	}
+
+	public int justLarger(int data) {
+		justLarger(root, data);
+		return justLarger == null ? Integer.MIN_VALUE : justLarger.data;
+	}
+	
 }

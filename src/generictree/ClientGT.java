@@ -24,6 +24,8 @@ public class ClientGT {
 //		gt.postOrder();
 //		gt.removeLeaf();
 //		gt.display();
-		gt.predSucc(80);
+//		gt.predSucc(80);
+		System.out.println(gt.justLarger(200));
+		System.out.println(gt.justLarger(30));
 	}
 }
