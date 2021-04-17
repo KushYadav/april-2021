@@ -25,7 +25,9 @@ public class ClientGT {
 //		gt.removeLeaf();
 //		gt.display();
 //		gt.predSucc(80);
-		System.out.println(gt.justLarger(200));
-		System.out.println(gt.justLarger(30));
+//		System.out.println(gt.justLarger(200));
+//		System.out.println(gt.justLarger(30));
+//		gt.levelOrder();
+		gt.levelOrderLW();
 	}
 }

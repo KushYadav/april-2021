@@ -2,6 +2,7 @@ package generictree;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class GenericTree {
@@ -260,7 +261,7 @@ public class GenericTree {
 
 	private void justLarger(Node node, int data) {
 		if (node.data > data) {
-			
+
 			if (justLarger == null) {
 				justLarger = node;
 			} else if (node.data < justLarger.data) {
@@ -276,5 +277,38 @@ public class GenericTree {
 		justLarger(root, data);
 		return justLarger == null ? Integer.MIN_VALUE : justLarger.data;
 	}
-	
+
+	// Level Order
+
+	public void levelOrder() {
+		LinkedList<Node> queue = new LinkedList<Node>();
+		queue.addLast(root);
+		while (queue.size() > 0) {
+			Node removed = queue.removeFirst();
+			System.out.println(removed.data);
+			for (Node child : removed.children) {
+				queue.addLast(child);
+			}
+		}
+	}
+
+	// Level Order Level-Wise
+
+	public void levelOrderLW() {
+		LinkedList<Node> queue1 = new LinkedList<Node>();
+		LinkedList<Node> queue2 = new LinkedList<Node>();
+		queue1.add(root);
+		while (!queue1.isEmpty()) {
+			Node removed = queue1.removeFirst();
+			System.out.print(removed.data + " ");
+			for (Node child : removed.children) {
+				queue2.addLast(child);
+			}
+			if (queue1.size() == 0) {
+				queue1 = queue2;
+				queue2 = new LinkedList<>();
+				System.out.println();
+			}
+		}
+	}
 }
