@@ -191,4 +191,28 @@ public class BinaryTree {
 			}
 		}
 	}
+
+	// Diameter
+
+	public int[] diameter(Node node) {
+		int dLeft = 0;
+		int dRight = 0;
+		int hLeft = -1;
+		int hRight = -1;
+		if (node.left != null) {
+			int[] l = diameter(node.left);
+			hLeft = l[0];
+			dLeft = l[1];
+		}
+		if (node.right != null) {
+			int[] r = diameter(node.right);
+			hRight = r[0];
+			dRight = r[1];
+		}
+		return new int[] { Math.max(hLeft, hRight) + 1, Math.max(Math.max(dLeft, dRight), hLeft + hRight + 3) };
+	}
+
+	public int diameter() {
+		return diameter(root)[1];
+	}
 }

@@ -8,18 +8,19 @@ public class ClientBT {
 
 		BinaryTree bt = new BinaryTree();
 		bt.display();
-		System.out.println(bt.isEmpty());
-		System.out.println(bt.size());
-		System.out.println(bt.sizeR());
-		System.out.println(bt.find(87));
-		System.out.println(bt.find(88));
-		System.out.println(bt.max());
-		System.out.println(bt.height());
-		bt.preOrder();
-		bt.inOrder();
-		bt.postOrder();
-		bt.levelOrder();
-		bt.levelOrderLW();
+//		System.out.println(bt.isEmpty());
+//		System.out.println(bt.size());
+//		System.out.println(bt.sizeR());
+//		System.out.println(bt.find(87));
+//		System.out.println(bt.find(88));
+//		System.out.println(bt.max());
+//		System.out.println(bt.height());
+//		bt.preOrder();
+//		bt.inOrder();
+//		bt.postOrder();
+//		bt.levelOrder();
+//		bt.levelOrderLW();
+		System.out.println(bt.diameter());
 
 	}
 
