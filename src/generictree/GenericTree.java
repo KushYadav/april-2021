@@ -194,7 +194,7 @@ public class GenericTree {
 		System.out.println();
 	}
 
-// Post-Order
+	// Post-Order
 
 	private void postOrder(Node node) {
 		for (Node child : node.children) {
@@ -207,5 +207,22 @@ public class GenericTree {
 		System.out.print("Post-Order: ");
 		postOrder(root);
 		System.out.println();
+	}
+
+	// Remove Leaf
+
+	private void removeLeaf(Node node) {
+		for (int i = node.children.size() - 1; i >= 0; i--) {
+			if (node.children.get(i).children.size() == 0) {
+				node.children.remove(i);
+			}
+		}
+		for (Node child : node.children) {
+			removeLeaf(child);
+		}
+	}
+
+	public void removeLeaf() {
+		removeLeaf(root);
 	}
 }

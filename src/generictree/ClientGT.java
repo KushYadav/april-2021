@@ -22,6 +22,7 @@ public class ClientGT {
 //		gt.display();
 		gt.preOrder();
 		gt.postOrder();
-		
+		gt.removeLeaf();
+		gt.display();
 	}
 }
