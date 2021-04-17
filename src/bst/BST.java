@@ -103,6 +103,17 @@ public class BST {
 		return trav.data;
 	}
 
+	private int maxR(Node node) {
+		if (node.right != null) {
+			maxR(node.right);
+		}
+		return node.data;
+	}
+
+	public int maxR() {
+		return maxR(root);
+	}
+
 	public boolean find(int data) {
 		Node trav = root;
 		while (trav != null) {
@@ -120,7 +131,7 @@ public class BST {
 
 	// Add Node
 
-	public void addNode(Node node, int data) {
+	private void addNode(Node node, int data) {
 		if (data < node.data && node.left == null) {
 			Node nNode = new Node(data);
 			node.left = nNode;
@@ -140,5 +151,37 @@ public class BST {
 
 	public void addNode(int data) {
 		addNode(root, data);
+	}
+
+	// Remove node
+
+	private Node removeNode(Node node, int data) {
+		if (node == null) {
+			return null;
+		}
+		if (data > node.data) {
+			node.right = removeNode(node.right, data);
+		} else if (data < node.data) {
+			node.left = removeNode(node.left, data);
+		} else {
+			if (node.left != null && node.right != null) {
+				int lmax = maxR(node.left);
+				node.data = lmax;
+				node.left = removeNode(node.left, lmax);
+				return node;
+			} else if (node.left != null) {
+				return node.left;
+			} else if (node.right != null) {
+				return node.right;
+			} else {
+				return null;
+			}
+		}
+		return node;
+
+	}
+
+	public void removeNode(int data) {
+		removeNode(root, data);
 	}
 }
