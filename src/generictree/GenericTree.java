@@ -311,4 +311,30 @@ public class GenericTree {
 			}
 		}
 	}
+
+	// Diameter
+
+	private int[] diameter(Node node) {
+		int diameter = 0;
+		int h1 = -1;
+		int h2 = -1;
+		for (Node child : node.children) {
+			int[] get = diameter(child);
+			int cHeight = get[0];
+			int cDiameter = get[1];
+			if (cHeight > h1) {
+				h1 = cHeight;
+			} else if (cHeight > h2) {
+				h2 = cHeight;
+			}
+			if (cDiameter > diameter) {
+				diameter = cDiameter;
+			}
+		}
+		return new int[] { Math.max(h1, h2) + 1, Math.max(diameter, h1 + h2 + 3) };
+	}
+
+	public int diameter() {
+		return diameter(root)[1];
+	}
 }

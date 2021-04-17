@@ -28,6 +28,7 @@ public class ClientGT {
 //		System.out.println(gt.justLarger(200));
 //		System.out.println(gt.justLarger(30));
 //		gt.levelOrder();
-		gt.levelOrderLW();
+//		gt.levelOrderLW();
+		System.out.println(gt.diameter());
 	}
 }
