@@ -6,6 +6,14 @@ public class BST {
 		int data;
 		Node left;
 		Node right;
+
+		public Node() {
+
+		}
+
+		public Node(int data) {
+			this.data = data;
+		}
 	}
 
 	// Required Variables
@@ -108,6 +116,29 @@ public class BST {
 			}
 		}
 		return false;
+	}
 
+	// Add Node
+
+	public void addNode(Node node, int data) {
+		if (data < node.data && node.left == null) {
+			Node nNode = new Node(data);
+			node.left = nNode;
+			return;
+		}
+		if (data > node.data && node.right == null) {
+			Node nNode = new Node(data);
+			node.right = nNode;
+			return;
+		}
+		if (data > node.data) {
+			addNode(node.right, data);
+		} else {
+			addNode(node.left, data);
+		}
+	}
+
+	public void addNode(int data) {
+		addNode(root, data);
 	}
 }

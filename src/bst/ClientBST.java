@@ -13,5 +13,7 @@ public class ClientBST {
 //		System.out.println(bst.min());
 //		System.out.println(bst.max());
 //		System.out.println(bst.find(23));
+		bst.addNode(10);
+		bst.display();
 	}
 }
