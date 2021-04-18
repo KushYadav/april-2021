@@ -1,5 +1,6 @@
 package graph;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
@@ -35,9 +36,9 @@ public class ClientGraphAL {
 
 		graph.get(3).add(new Edge(3, 0, 40));
 		graph.get(3).add(new Edge(3, 2, 10));
-//		graph.get(3).add(new Edge(3, 4, 2));
+		graph.get(3).add(new Edge(3, 4, 2));
 
-//		graph.get(4).add(new Edge(4, 3, 2));
+		graph.get(4).add(new Edge(4, 3, 2));
 		graph.get(4).add(new Edge(4, 5, 3));
 		graph.get(4).add(new Edge(4, 6, 8));
 
@@ -60,16 +61,28 @@ public class ClientGraphAL {
 //		System.out.println("Just Smaller Path than: " + fPath + "@" + fPathWt);
 //		System.out.println(k + "th Larger path: " + pq.peek().psf + "@" + pq.peek().wsf);
 
-		ArrayList<ArrayList<Integer>> comps = new ArrayList<>();
-		for (int i = 0; i < vces; i++) {
+//		ArrayList<ArrayList<Integer>> comps = new ArrayList<>();
+//		for (int i = 0; i < vces; i++) {
+//			if (!visited[i]) {
+//				ArrayList<Integer> comp = new ArrayList<Integer>();
+//				traverse(graph, i, comp, visited);
+//				comps.add(comp);
+//			}
+//		}
+//		System.out.println(comps);
+//		System.out.println("Graph is " + (comps.size() == 1 ? "Connected" : "Disconnected"));
+//		bfs(graph, 2);
+
+		for (int i = 0; i < graph.size(); i++) {
 			if (!visited[i]) {
-				ArrayList<Integer> comp = new ArrayList<Integer>();
-				traverse(graph, i, comp, visited);
-				comps.add(comp);
+				boolean cycle = isCyclic(graph, i, visited);
+				if (cycle) {
+					System.out.println(true);
+					return;
+				}
 			}
 		}
-		System.out.println(comps);
-		System.out.println("Graph is " + (comps.size() == 1 ? "Connected" : "Disconnected"));
+		System.out.println(false);
 	}
 
 	// Has Path from A to B
@@ -185,6 +198,60 @@ public class ClientGraphAL {
 				traverse(graph, e.nbr, comp, visited);
 			}
 		}
+	}
+
+	// Breadth First Search(BFS)
+
+	public static class PairBFS {
+		int v;
+		String psf;
+
+		public PairBFS(int v, String psf) {
+			this.v = v;
+			this.psf = psf;
+		}
+	}
+
+	public static void bfs(ArrayList<ArrayList<Edge>> graph, int src) {
+		ArrayDeque<PairBFS> queue = new ArrayDeque<>();
+		queue.addLast(new PairBFS(src, src + ""));
+		boolean[] visited = new boolean[graph.size()];
+
+		while (!queue.isEmpty()) {
+			PairBFS removed = queue.removeFirst();
+			if (visited[removed.v]) {
+				continue;
+			}
+			System.out.println(removed.v + "@" + removed.psf);
+			visited[removed.v] = true;
+
+			for (Edge edge : graph.get(removed.v)) {
+				if (visited[edge.nbr] == false) {
+					queue.addLast(new PairBFS(edge.nbr, removed.psf + edge.nbr));
+				}
+			}
+		}
+	}
+
+	// Has Cycle ?
+
+	public static boolean isCyclic(ArrayList<ArrayList<Edge>> graph, int src, boolean[] visited) {
+		ArrayDeque<PairBFS> queue = new ArrayDeque<>();
+		queue.addLast(new PairBFS(src, src + " "));
+		while (!queue.isEmpty()) {
+			PairBFS removed = queue.removeFirst();
+			if (visited[removed.v]) {
+				return true;
+			}
+			visited[removed.v] = true;
+
+			for (Edge edge : graph.get(removed.v)) {
+				if (visited[edge.nbr] == false) {
+					queue.addLast(new PairBFS(edge.nbr, removed.psf + edge.nbr));
+				}
+			}
+		}
+		return false;
 	}
 
 }
