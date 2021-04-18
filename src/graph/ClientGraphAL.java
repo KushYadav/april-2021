@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class ClientGraphAL {
 
@@ -48,7 +49,16 @@ public class ClientGraphAL {
 
 		boolean[] visited = new boolean[vces];
 //		System.out.println(hasPath(graph, 0, 6, visited));
-		printAllPaths(graph, 0, 6, visited, "0");
+//		printAllPaths(graph, 0, 6, visited, "0");
+
+		int criteria = 40;
+		int k = 3;
+		differentPaths(graph, 0, 6, visited, criteria, k, "0", 0);
+		System.out.println("Smallest Path: " + sPath + "@" + sPathWt);
+		System.out.println("Largest Path: " + lPath + "@" + lPathWt);
+		System.out.println("Just Larger Path than: " + cPath + "@" + cPathWt);
+		System.out.println("Just Smaller Path than: " + fPath + "@" + fPathWt);
+		System.out.println(k + "th Larger path: " + pq.peek().psf + "@" + pq.peek().wsf);
 	}
 
 	// Has Path from A to B
@@ -85,4 +95,74 @@ public class ClientGraphAL {
 		}
 		visited[src] = false;
 	}
+
+	// Different Paths
+
+	public static class Pair implements Comparable<Pair> {
+		int wsf;
+		String psf;
+
+		Pair(int wsf, String psf) {
+			this.wsf = wsf;
+			this.psf = psf;
+		}
+
+		@Override
+		public int compareTo(Pair o) {
+			return this.wsf - o.wsf;
+		}
+	}
+
+	static String sPath;
+	static Integer sPathWt = Integer.MAX_VALUE;
+	static String lPath;
+	static Integer lPathWt = Integer.MIN_VALUE;
+	static String cPath;
+	static Integer cPathWt = Integer.MAX_VALUE;
+	static String fPath;
+	static Integer fPathWt = Integer.MIN_VALUE;
+	static PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+	public static void differentPaths(ArrayList<ArrayList<Edge>> graph, int src, int dest, boolean[] visited,
+			int criteria, int k, String psf, int wsf) {
+
+		if (src == dest) {
+			if (wsf < sPathWt) {
+				sPathWt = wsf;
+				sPath = psf;
+			}
+
+			if (wsf > lPathWt) {
+				lPathWt = wsf;
+				lPath = psf;
+			}
+
+			if (wsf > criteria && wsf < cPathWt) {
+				cPathWt = wsf;
+				cPath = psf;
+			}
+			if (wsf < criteria && wsf > fPathWt) {
+				fPathWt = wsf;
+				cPath = psf;
+			}
+			if (pq.size() < k) {
+				pq.add(new Pair(wsf, psf));
+			} else {
+				if (wsf > pq.peek().wsf) {
+					pq.remove();
+					pq.add(new Pair(wsf, psf));
+				}
+			}
+		}
+
+		visited[src] = true;
+		for (Edge edge : graph.get(src)) {
+			if (!visited[edge.nbr]) {
+				differentPaths(graph, edge.nbr, dest, visited, criteria, k, psf + edge.nbr, wsf + edge.wt);
+			}
+		}
+		visited[src] = false;
+
+	}
+
 }
