@@ -23,8 +23,8 @@ public class ClientGraphAL {
 			graph.add(new ArrayList<Edge>());
 		}
 
-		graph.get(0).add(new Edge(0, 3, 40));
 		graph.get(0).add(new Edge(0, 1, 10));
+		graph.get(0).add(new Edge(0, 3, 40));
 
 		graph.get(1).add(new Edge(1, 0, 10));
 		graph.get(1).add(new Edge(1, 2, 10));
@@ -47,7 +47,8 @@ public class ClientGraphAL {
 		graph.get(6).add(new Edge(6, 5, 8));
 
 		boolean[] visited = new boolean[vces];
-		System.out.println(hasPath(graph, 0, 5, visited));
+//		System.out.println(hasPath(graph, 0, 6, visited));
+		printAllPaths(graph, 0, 6, visited, "0");
 	}
 
 	// Has Path from A to B
@@ -66,5 +67,22 @@ public class ClientGraphAL {
 			}
 		}
 		return false;
+	}
+
+	// Find All Paths
+
+	public static void printAllPaths(ArrayList<ArrayList<Edge>> graph, int src, int dest, boolean[] visited,
+			String psf) {
+		if (src == dest) {
+			System.out.println(psf);
+			return;
+		}
+		visited[src] = true;
+		for (Edge edge : graph.get(src)) {
+			if (!visited[edge.nbr]) {
+				printAllPaths(graph, edge.nbr, dest, visited, psf + edge.nbr);
+			}
+		}
+		visited[src] = false;
 	}
 }
