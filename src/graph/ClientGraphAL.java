@@ -35,9 +35,9 @@ public class ClientGraphAL {
 
 		graph.get(3).add(new Edge(3, 0, 40));
 		graph.get(3).add(new Edge(3, 2, 10));
-		graph.get(3).add(new Edge(3, 4, 2));
+//		graph.get(3).add(new Edge(3, 4, 2));
 
-		graph.get(4).add(new Edge(4, 3, 2));
+//		graph.get(4).add(new Edge(4, 3, 2));
 		graph.get(4).add(new Edge(4, 5, 3));
 		graph.get(4).add(new Edge(4, 6, 8));
 
@@ -51,14 +51,25 @@ public class ClientGraphAL {
 //		System.out.println(hasPath(graph, 0, 6, visited));
 //		printAllPaths(graph, 0, 6, visited, "0");
 
-		int criteria = 40;
-		int k = 3;
-		differentPaths(graph, 0, 6, visited, criteria, k, "0", 0);
-		System.out.println("Smallest Path: " + sPath + "@" + sPathWt);
-		System.out.println("Largest Path: " + lPath + "@" + lPathWt);
-		System.out.println("Just Larger Path than: " + cPath + "@" + cPathWt);
-		System.out.println("Just Smaller Path than: " + fPath + "@" + fPathWt);
-		System.out.println(k + "th Larger path: " + pq.peek().psf + "@" + pq.peek().wsf);
+//		int criteria = 40;
+//		int k = 3;
+//		differentPaths(graph, 0, 6, visited, criteria, k, "0", 0);
+//		System.out.println("Smallest Path: " + sPath + "@" + sPathWt);
+//		System.out.println("Largest Path: " + lPath + "@" + lPathWt);
+//		System.out.println("Just Larger Path than: " + cPath + "@" + cPathWt);
+//		System.out.println("Just Smaller Path than: " + fPath + "@" + fPathWt);
+//		System.out.println(k + "th Larger path: " + pq.peek().psf + "@" + pq.peek().wsf);
+
+		ArrayList<ArrayList<Integer>> comps = new ArrayList<>();
+		for (int i = 0; i < vces; i++) {
+			if (!visited[i]) {
+				ArrayList<Integer> comp = new ArrayList<Integer>();
+				traverse(graph, i, comp, visited);
+				comps.add(comp);
+			}
+		}
+		System.out.println(comps);
+		System.out.println("Graph is " + (comps.size() == 1 ? "Connected" : "Disconnected"));
 	}
 
 	// Has Path from A to B
@@ -162,7 +173,18 @@ public class ClientGraphAL {
 			}
 		}
 		visited[src] = false;
+	}
 
+	// Connected Components
+
+	public static void traverse(ArrayList<ArrayList<Edge>> graph, int src, ArrayList<Integer> comp, boolean[] visited) {
+		visited[src] = true;
+		comp.add(src);
+		for (Edge e : graph.get(src)) {
+			if (!visited[e.nbr]) {
+				traverse(graph, e.nbr, comp, visited);
+			}
+		}
 	}
 
 }
