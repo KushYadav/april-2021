@@ -3,17 +3,17 @@ package dp;
 public class NoConsecutiveZeroes {
 
 	public static void main(String[] args) {
-
 		int n = 6;
-		int ans = 0;
+		int zero = 0;
+		int one = 0;
 
 		for (int i = 1; i <= n; i++) {
 			if (i == 1) {
-				ans += 1;
+				zero = one = 1;
 			} else {
-				ans += 4;
+				one = zero + (zero = one);
 			}
 		}
-		System.out.println(ans);
+		System.out.println(zero + one);
 	}
 }
